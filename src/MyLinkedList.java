@@ -1,7 +1,7 @@
 public class MyLinkedList<Type extends Comparable <Type>> {
     private class Node {
         public Type item;
-        public Node nextK;
+        public Node next;
 
         public Node(Type item) {
             this.item = item;

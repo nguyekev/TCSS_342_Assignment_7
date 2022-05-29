@@ -4,18 +4,15 @@ public class UniqueWords {
 
     public UniqueWords() throws IOException {
         addUniqueWordsToLinkedList();
-        addUniqueWordsToBinarySearchTree();
+        addUniqueWordsToAVL();
     }
 
     public void addUniqueWordsToLinkedList() {
-        long start, finish, difference;
-        start = System.currentTimeMillis();
-        System.out.println("Adding unique words using linkedList");
         String words = book.getWords().first();
         MyLinkedList<String> uniqueWords = new MyLinkedList<>();
         while (words != null) {
             if (!uniqueWords.contains(words)) {
-                if(uniqueWords.isEmpty()) {
+                if (uniqueWords.isEmpty()) {
                     uniqueWords.addBefore(words);
                     uniqueWords.first();
                 } else {
@@ -25,13 +22,8 @@ public class UniqueWords {
             }
             words = book.getWords().next();
         }
-        System.out.println("Linked list unique words: " + uniqueWords.size());
-        finish = System.currentTimeMillis();
-        difference = finish - start;
-        System.out.println("Time to process: " + difference + " milliseconds.");
-        System.out.println();
     }
-    public void addUniqueWordsToBinarySearchTree() {
+    public void addUniqueWordsToAVL() {
         long start, start2, finish, finish2, difference, difference2;
         start = System.currentTimeMillis();
         String words = book.getWords().first();
@@ -44,15 +36,16 @@ public class UniqueWords {
         }
         finish = System.currentTimeMillis();
         difference = finish - start;
-        System.out.println("Time to add unique words using binary search tree: " + difference + " milliseconds.");
-        System.out.println("Binary search tree unique words: " + uniqueWords.getSize());
-        System.out.println("The binary search tree had a height of " + uniqueWords.height() +
-                " and made " + Math.abs(uniqueWords.comparisons) + " comparisons.");
+        System.out.println("Time to add unique words using AVL Tree: " + difference + " milliseconds.");
+        System.out.println("AVL tree unique words: " + uniqueWords.getSize());
+        System.out.println("The AVL tree had a height of " + uniqueWords.height() +
+                " , " + Math.abs(uniqueWords.comparisons) + " comparisons, and "
+                + uniqueWords.rotations + " rotations.");
         start2 = System.currentTimeMillis();
         uniqueWords.toString();
         finish2 = System.currentTimeMillis();
         difference2 = finish2 - start2;
-        System.out.println("Time to process binary search tree: " + difference2 + " milliseconds.");
+        System.out.println("Time to process AVL tree: " + difference2 + " milliseconds.");
     }
     public static void main(String[] args) throws IOException {
         new UniqueWords();
